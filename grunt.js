@@ -58,7 +58,7 @@ module.exports = function(grunt) {
         prepend: ['<banner:meta.banner>'],
 	dest: 'lib/<%= pkg.name %>.js'
       },
-      'lib/testable': {
+      'test/chosen-specs.js': {
         aliases: ['jquery:jquery-browserify'],
 	entries: ["src/main/coffeescript/*.coffee", "src/test/coffeescript/*.coffee"],
         prepend: ['<banner:meta.banner>'],

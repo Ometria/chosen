@@ -1,13 +1,14 @@
-###
-Chosen source: generate output using 'cake build'
-Copyright (c) 2011 by Harvest
-###
-root = this
-$ = jQuery
+jQuery = require 'jquery-browserify'
+$ = jQuery.$
+{AbstractChosen} = require './abstract-chosen.coffee'
+{SelectParser} = require './select-parser.coffee'
+
+get_side_border_padding = (elmt) ->
+  side_border_padding = elmt.outerWidth() - elmt.width()
 
 $.fn.extend({
   chosen: (options) ->
-    ua = navigator.userAgent.toLowerCase();
+    ua = window.navigator.userAgent.toLowerCase();
 
     match = /(msie) ([\w.]+)/.exec( ua ) || [];
     
@@ -116,24 +117,24 @@ class Chosen extends AbstractChosen
     if(@is_disabled)
       @container.addClass 'chzn-disabled'
       @search_field[0].disabled = true
-      @selected_item.unbind "focus", @activate_action if !@is_multiple
+      @selected_item.unbind "focus", @activate_action if not @is_multiple
       this.close_field()
     else
       @container.removeClass 'chzn-disabled'
       @search_field[0].disabled = false
-      @selected_item.bind "focus", @activate_action if !@is_multiple
+      @selected_item.bind "focus", @activate_action if not @is_multiple
 
   container_mousedown: (evt) ->
-    if !@is_disabled
-      target_closelink =  if evt? then ($ evt.target).hasClass "search-choice-close" else false
-      if evt and evt.type is "mousedown" and not @results_showing
+    if not @is_disabled
+      target_closelink =  if evt? then $(evt.target).hasClass "search-choice-close" else false
+      if evt?.type is "mousedown" and not @results_showing
         evt.preventDefault()
       if not @pending_destroy_click and not target_closelink
         if not @active_field
           @search_field.val "" if @is_multiple
           $(document).click @click_test_action
           this.results_show()
-        else if not @is_multiple and evt and (($(evt.target)[0] == @selected_item[0]) || $(evt.target).parents("a.chzn-single").length)
+        else if not @is_multiple and evt and (($(evt.target)[0] == @selected_item[0]) or $(evt.target).parents("a.chzn-single").length)
           evt.preventDefault()
           this.results_toggle()
 
@@ -176,7 +177,7 @@ class Chosen extends AbstractChosen
 
   results_build: ->
     @parsing = true
-    @results_data = root.SelectParser.select_to_array @form_field
+    @results_data = SelectParser.select_to_array @form_field
 
     if @is_multiple and @choices > 0
       @search_choices.find("li.search-choice").remove()
@@ -244,8 +245,8 @@ class Chosen extends AbstractChosen
       if @result_single_selected
         this.result_do_highlight( @result_single_selected )
     else if @max_selected_options <= @choices
-      @form_field_jq.trigger("liszt:maxselected", {chosen: this})
-      return false
+      @form_field_jq.trigger("liszt:maxselected", chosen: this)
+      false
 
     dd_top = if @is_multiple then @container.height() else (@container.height() - 1)
     @form_field_jq.trigger("liszt:showing_dropdown", {chosen: this})
@@ -260,8 +261,8 @@ class Chosen extends AbstractChosen
   results_hide: ->
     @selected_item.removeClass "chzn-single-with-drop" unless @is_multiple
     this.result_clear_highlight()
-    @form_field_jq.trigger("liszt:hiding_dropdown", {chosen: this})
-    @dropdown.css {"left":"-9000px"}
+    @form_field_jq.trigger("liszt:hiding_dropdown", chosen: this)
+    @dropdown.css left:"-9000px"
     @results_showing = false
 
 
@@ -302,7 +303,7 @@ class Chosen extends AbstractChosen
   choice_build: (item) ->
     if @is_multiple and @max_selected_options <= @choices
       @form_field_jq.trigger("liszt:maxselected", {chosen: this})
-      return false # fire event
+      false # fire event
     choice_id = @container_id + "_c_" + item.array_index
     @choices += 1
     if item.disabled
@@ -377,7 +378,7 @@ class Chosen extends AbstractChosen
 
       @search_field.val ""
 
-      @form_field_jq.trigger "change", {'selected': @form_field.options[item.options_index].value} if @is_multiple || @form_field_jq.val() != @current_value
+      @form_field_jq.trigger "change", {'selected': @form_field.options[item.options_index].value} if @is_multiple or @form_field_jq.val() isnt @current_value
       @current_value = @form_field_jq.val()
       this.search_field_scale()
 
@@ -403,9 +404,9 @@ class Chosen extends AbstractChosen
       @form_field_jq.trigger "change", {deselected: @form_field.options[result_data.options_index].value}
       this.search_field_scale()
 
-      return true
+      true
     else
-      return false
+      false
 
   single_deselect_control_build: ->
     @selected_item.find("span").first().after "<abbr class=\"search-choice-close\"></abbr>" if @allow_single_deselect and @selected_item.find("abbr").length < 1
@@ -436,10 +437,9 @@ class Chosen extends AbstractChosen
             #TODO: replace this substitution of /\[\]/ with a list of characters to skip.
             parts = option.html.replace(/\[|\]/g, "").split(" ")
             if parts.length
-              for part in parts
-                if regex.test part
-                  found = true
-                  results += 1
+              for part in parts when regex.test part
+                found = true
+                results += 1
 
           if found
             if searchText.length
@@ -475,7 +475,6 @@ class Chosen extends AbstractChosen
 
   winnow_results_set_highlight: ->
     if not @result_highlight
-
       selected_results = if not @is_multiple then @search_results.find(".result-selected.active-result") else []
       do_high = if selected_results.length then selected_results.first() else @search_results.find(".active-result").first()
 
@@ -532,26 +531,21 @@ class Chosen extends AbstractChosen
     stroke = evt.which ? evt.keyCode
     this.search_field_scale()
 
-    this.clear_backstroke() if stroke != 8 and this.pending_backstroke
+    this.clear_backstroke() if stroke isnt 8 and this.pending_backstroke
 
     switch stroke
       when 8
         @backstroke_length = this.search_field.val().length
-        break
       when 9
         this.result_select(evt) if this.results_showing and not @is_multiple
         @mouse_on_container = false
-        break
       when 13
         evt.preventDefault()
-        break
       when 38
         evt.preventDefault()
         this.keyup_arrow()
-        break
       when 40
         this.keydown_arrow()
-        break
 
   search_field_scale: ->
     if @is_multiple
@@ -585,9 +579,6 @@ class Chosen extends AbstractChosen
       string += this.generate_random_char()
     string
 
-root.Chosen = Chosen
+exports.Chosen = Chosen
 
-get_side_border_padding = (elmt) ->
-  side_border_padding = elmt.outerWidth() - elmt.width()
 
-root.get_side_border_padding = get_side_border_padding

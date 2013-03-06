@@ -1,9 +1,3 @@
-###
-Chosen source: generate output using 'cake build'
-Copyright (c) 2011 by Harvest
-###
-root = this
-
 class AbstractChosen
 
   constructor: (@form_field, @options={}) ->
@@ -124,4 +118,4 @@ class AbstractChosen
     rand = Math.floor(Math.random() * chars.length)
     newchar = chars.substring rand, rand+1
 
-root.AbstractChosen = AbstractChosen
+exports.AbstractChosen = AbstractChosen

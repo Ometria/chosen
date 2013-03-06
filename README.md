@@ -1,9 +1,8 @@
 # Chosen
 
-Chosen is a library for making long, unwieldy select boxes more user friendly.
+Chosen is a library for making long, unwieldy select boxes more user friendly. This is a fork of the original Chosen plugin. This plugin bundles its own version of jquery and makes the chosen plugin sutiable for requiring in projects that use browserify.
 
 - jQuery support: 1.4+
-- Prototype support: 1.7+
 
 For documentation, usage, and examples, see:  
 http://harvesthq.github.com/chosen
@@ -15,28 +14,24 @@ Contributions and pull requests are very welcome. Please follow these guidelines
 1. Make all changes in Coffeescript files, **not** JavaScript files.
 2. For feature changes, update both jQuery *and* Prototype versions
 3. Use `npm install -d` to install the correct development dependencies.
-4. Use `cake build` or `cake watch` to generate Chosen's JavaScript file and minified version.
+4. Use `grunt` to generate Chosen's JavaScript file and minified version.
 5. Don't touch the `VERSION` file
 6. Submit a Pull Request using GitHub.
 
 ### Using CoffeeScript & Cake
 
-First, make sure you have the proper CoffeeScript / Cake set-up in place. We have added a package.json that makes this easy:
+First, make sure you have the proper CoffeeScript set-up in place. We have added a package.json that makes this easy:
 
 ```
 npm install -d
 ```
 
-This will install `coffee-script` and `uglifyjs`.
+This will install all the development dependencies.
 
 Once you're configured, building the JavasScript from the command line is easy:
 
-    cake build                # build Chosen from source
-    cake watch                # watch coffee/ for changes and build Chosen
+    grunt
     
-If you're interested, you can find the recipes in Cakefile.
-
-
 ### Chosen Credits
 
 - Built by [Harvest](http://www.getharvest.com/). Want to work on projects like this? [We’re hiring](http://www.getharvest.com/careers)!

@@ -1,18 +1,49 @@
 {
-  "author": "harvest",
-  "name": "chosen",
-  "version": "0.9.11",
-  "description": "Chosen is a JavaScript plugin that makes long, unwieldy select boxes much more user-friendly. It is currently available in both jQuery and Prototype flavors.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/harvesthq/chosen"
+  "author"		: "Jack Viers",
+  "license"		: "MIT",
+  "readmeFilename"	: "README.md",
+  "name"		: "chosen-jquery-browserify",
+  "main"		: "chosen.js",
+  "version"		: "0.9.12",
+  "description"		: "Chosen is a JavaScript plugin that makes long, unwieldy select boxes much more user-friendly. This version is a fork of the original, made grunt- and browserify- and npm-friendly",
+  "repository"		: {
+    "type"	: "git",
+    "url"	: "https://github.com/banno/chosen"
   },
-  "engines": {
-    "node": ">=0.4.0"
+  "engines"		: {
+    "node"	: ">=0.4.0"
   },
-  "dependencies": {},
-  "devDependencies": {
-    "coffee-script": ">= 1.4",
-    "uglify-js": ">= 1.2.5 <2.0"
-  }
+  "dependencies"	: {
+    "jquery-browserify"	: "~1.8.1"
+  },
+  "devDependencies"	: {
+    "grunt"			: "~0.3.17"		,
+    "grunt-contrib-cssmin"      : "~0.4.0"              ,
+    "grunt-mocha"		: "~0.2.2"		,
+    "grunt-contrib"		: "~0.3.0"		,
+    "grunt-contrib-copy"	: "~0.3.2"		,
+    "grunt-browserify"		: "~0.1.2"		,
+    "coffee-script"		: ">= 1.4"		,
+    "uglify-js"			: ">= 1.2.5 <2.0"	,
+    "chai"			: "~1.5.0"
+  },
+  "scripts"		: {
+    "test"	: "grunt test"
+  },
+  "keywords"		: [
+    "chosen"	,
+    "selection"	,
+    "widget"	,
+    "jquery"	,
+    "ux"
+  ]
 }
+
+
+
+
+
+
+
+
+

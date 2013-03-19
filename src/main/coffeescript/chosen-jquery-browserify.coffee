@@ -1,16 +1,13 @@
-jQuery = require 'jquery-browserify'
-$ = jQuery.$
-{AbstractChosen} = require './abstract-chosen.coffee'
-{SelectParser} = require './select-parser.coffee'
+$ = window.jQuery
 
 get_side_border_padding = (elmt) ->
   side_border_padding = elmt.outerWidth() - elmt.width()
 
 $.fn.extend({
   chosen: (options) ->
-    ua = window.navigator.userAgent.toLowerCase();
+    ua = window.navigator.userAgent.toLowerCase()
 
-    match = /(msie) ([\w.]+)/.exec( ua ) || [];
+    match = /(msie) ([\w.]+)/.exec( ua ) || []
     
     browser =
       name: match[ 1 ] || ""
@@ -46,7 +43,7 @@ class Chosen extends AbstractChosen
 
     @f_width = @form_field_jq.outerWidth()
 
-    container_props = 
+    container_props =
       id: @container_id
       class: container_classes.join ' '
       style: 'width: ' + (@f_width) + 'px;' #use parens around @f_width so coffeescript doesn't think + ' px' is a function parameter

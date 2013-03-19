@@ -118,4 +118,3 @@ class AbstractChosen
     rand = Math.floor(Math.random() * chars.length)
     newchar = chars.substring rand, rand+1
 
-exports.AbstractChosen = AbstractChosen

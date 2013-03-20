@@ -60,7 +60,8 @@ module.exports = (grunt) ->
       main:
         files:[
           src: [
-            'src/main/resources/**'
+            'src/main/resources/*.css'
+            'src/main/resources/*.png'
           ]
           dest: 'dist/resources/'
           filter: 'isFile'
@@ -79,6 +80,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib')
   grunt.loadNpmTasks('grunt-mocha')
   grunt.loadNpmTasks('grunt-coffeelint')
+  grunt.loadNpmTasks('grunt-bump')
 
 
   grunt.registerTask('default', ['coffeelint', 'coffee', 'cssmin', 'copy'])

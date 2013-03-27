@@ -1,4 +1,5 @@
-$ = window.jQuery
+$ = global.$
+$ or= require('jquery-browserify')
 
 get_side_border_padding = (elmt) ->
   side_border_padding = elmt.outerWidth() - elmt.width()

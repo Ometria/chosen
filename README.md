@@ -43,3 +43,7 @@ Once you're configured, building the JavasScript from the command line is easy:
 - [Chosen for MooTools](https://github.com/julesjanssen/chosen), by Jules Janssen
 - [Chosen Drupal 7 Module](http://drupal.org/project/chosen), by Pol Dell'Aiera, Arshad Chummun, Bart Feenstra, Kálmán Hosszu, etc.
 - [Chosen CakePHP Plugin](https://github.com/paulredmond/chosen-cakephp), by Paul Redmond
+
+
+### Changelog
+1.0.0 -- users must provide a valid jquery instance at global.$

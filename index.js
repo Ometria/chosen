@@ -193,8 +193,6 @@
 
   $ = global.$;
 
-  $ || ($ = require('jquery-browserify'));
-
   get_side_border_padding = function(elmt) {
     var side_border_padding;
 

@@ -2,13 +2,13 @@
   "author": "Jack Viers",
   "license": "MIT",
   "readmeFilename": "README.md",
-  "name": "chosen-jquery-browserify",
+  "name": "chosen-webpack",
   "main": "index.js",
   "version": "1.0.0",
   "description": "Chosen is a JavaScript plugin that makes long, unwieldy select boxes much more user-friendly. This version is a fork of the original, made grunt- and browserify- and npm-friendly",
   "repository": {
     "type": "git",
-    "url": "https://github.com/banno/chosen"
+    "url": "https://github.com/Ometria/chosen"
   },
   "engines": {
     "node": ">=0.4.0"

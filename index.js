@@ -1,5 +1,5 @@
 (function() {
-  var $, AbstractChosen, Chosen, SelectParser, get_side_border_padding, _ref,
+  var AbstractChosen, Chosen, SelectParser, get_side_border_padding, _ref,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -190,8 +190,6 @@
     return AbstractChosen;
 
   })();
-
-  $ = window.jQuery;
 
   get_side_border_padding = function(elmt) {
     var side_border_padding;

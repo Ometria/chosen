@@ -191,7 +191,7 @@
 
   })();
 
-  $ = global.$;
+  $ = window.jQuery;
 
   get_side_border_padding = function(elmt) {
     var side_border_padding;
